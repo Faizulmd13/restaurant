@@ -1,62 +1,124 @@
-export default function loadReserve(){
+export default function loadReserve() {
   const main = document.querySelector("main");
-  main.innerHTML = `
-    <div class="reserve-header">
-        <h1 class="title-text">Make a Reservation</h1>
-        <p title="subtitle-text">
-          Book your table for an unforgettable experience
-        </p>
-        <img
-          src="https://images.unsplash.com/photo-1617692855027-33b14f061079?q=80&w=870&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-          alt="Restaurant table setting"
-          class="page-image"
-        />
-      </div>
+  main.textContent = "";
 
-      <form id="reservation-form">
-        <label for="name">Full Name</label>
-        <input type="text" name="name" required />
+  const header = document.createElement("div");
+  header.classList.add("reserve-header");
 
-        <label for="email">Email Address</label>
-        <input type="text" name="email" required />
+  const title = document.createElement("h1");
+  title.classList.add("title-text");
+  title.textContent = "Make a Reservation";
 
-        <label for="phone">Phone Number</label>
-        <input type="number" name="phone" required />
+  const subtitle = document.createElement("p");
+  subtitle.classList.add("subtitle-text");
+  subtitle.textContent = "Book your table for an unforgettable experience";
 
-        <label for="date">Preferred Date</label>
-        <input type="date" name="date" required />
+  const img = document.createElement("img");
+  img.setAttribute(
+    "src",
+    "https://images.unsplash.com/photo-1617692855027-33b14f061079?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+  );
+  img.setAttribute("alt", "Restaurant table setting");
+  img.classList.add("page-image");
 
-        <label for="time">Preferred Time</label>
-        <select name="time" required>
-          <option value="1">Select a time</option>
-          <option value="2">5:00 PM</option>
-          <option value="3">5:30 PM</option>
-          <option value="4">6:00 PM</option>
-          <option value="5">6:30 PM</option>
-          <option value="6">7:00 PM</option>
-          <option value="7">7:30 PM</option>
-          <option value="8">8:00 PM</option>
-          <option value="9">8:30 PM</option>
-          <option value="10">9:00 PM</option>
-        </select>
+  header.append(title, subtitle, img);
 
-        <label for="guest-count">Number of Guests</label>
-        <select name="guest-count" required>
-          <option value="default">Select Number of guests</option>
-          <option value="1">1 Guests</option>
-          <option value="2">2 Guests</option>
-          <option value="3">3 Guests</option>
-          <option value="4">4 Guests</option>
-          <option value="5">5 Guests</option>
-          <option value="6">6 Guests</option>
-          <option value="7">7 Guests</option>
-          <option value="8">8 Guests</option>
-        </select>
+  const form = document.createElement("form");
+  form.id = "reservation-form";
 
-        <label for="requests">Special Requests</label>
-        <textarea name="requests"></textarea>
+  function addInput(labelText, type, name) {
+    const label = document.createElement("label");
+    label.setAttribute("for", name);
+    label.textContent = labelText;
 
-        <button type="submit" class="sbt-btn btn">Make Reservation</button>
-      </form>
-    `;
+    const input = document.createElement("input");
+    input.setAttribute("type", type);
+    input.setAttribute("name", name);
+    input.required = true;
+
+    form.append(label, input);
+  }
+
+  addInput("Full Name", "text", "name");
+  addInput("Email Address", "text", "email");
+  addInput("Phone Number", "number", "phone");
+
+  addInput("Preferred Date", "date", "date");
+
+  const timeLabel = document.createElement("label");
+  timeLabel.setAttribute("for", "time");
+  timeLabel.textContent = "Preferred Time";
+
+  const timeSelect = document.createElement("select");
+  timeSelect.name = "time";
+  timeSelect.required = true;
+
+  const timeOptions = [
+    ["1", "Select a time"],
+    ["2", "5:00 PM"],
+    ["3", "5:30 PM"],
+    ["4", "6:00 PM"],
+    ["5", "6:30 PM"],
+    ["6", "7:00 PM"],
+    ["7", "7:30 PM"],
+    ["8", "8:00 PM"],
+    ["9", "8:30 PM"],
+    ["10", "9:00 PM"],
+  ];
+
+  timeOptions.forEach(([value, text]) => {
+    const option = document.createElement("option");
+    option.value = value;
+    option.textContent = text;
+    timeSelect.appendChild(option);
+  });
+
+  form.append(timeLabel, timeSelect);
+
+  const guestLabel = document.createElement("label");
+  guestLabel.setAttribute("for", "guest-count");
+  guestLabel.textContent = "Number of Guests";
+
+  const guestSelect = document.createElement("select");
+  guestSelect.name = "guest-count";
+  guestSelect.required = true;
+
+  const guestOptions = [
+    ["default", "Select Number of guests"],
+    ["1", "1 Guest"],
+    ["2", "2 Guests"],
+    ["3", "3 Guests"],
+    ["4", "4 Guests"],
+    ["5", "5 Guests"],
+    ["6", "6 Guests"],
+    ["7", "7 Guests"],
+    ["8", "8 Guests"],
+  ];
+
+  guestOptions.forEach(([value, text]) => {
+    const option = document.createElement("option");
+    option.value = value;
+    option.textContent = text;
+    guestSelect.appendChild(option);
+  });
+
+  form.append(guestLabel, guestSelect);
+
+  const requestLabel = document.createElement("label");
+  requestLabel.setAttribute("for", "requests");
+  requestLabel.textContent = "Special Requests";
+
+  const textarea = document.createElement("textarea");
+  textarea.name = "requests";
+
+  form.append(requestLabel, textarea);
+
+  const button = document.createElement("button");
+  button.type = "submit";
+  button.classList.add("sbt-btn", "btn");
+  button.textContent = "Make Reservation";
+
+  form.appendChild(button);
+
+  main.append(header, form);
 }
