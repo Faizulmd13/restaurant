@@ -1,5 +1,6 @@
 export default function loadHome() {
   const main = document.querySelector("main");
+  main.textContent = "";
 
   const mainHeader = document.createElement("div");
   mainHeader.classList.add("main-header");

@@ -1,5 +1,6 @@
 export default function loadAbout() {
   const main = document.querySelector("main");
+  main.textContent = "";
 
   const aboutHeader = document.createElement("div");
   aboutHeader.classList.add("about-header");
