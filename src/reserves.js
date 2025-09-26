@@ -42,7 +42,6 @@ export default function loadReserve() {
   addInput("Full Name", "text", "name");
   addInput("Email Address", "text", "email");
   addInput("Phone Number", "number", "phone");
-
   addInput("Preferred Date", "date", "date");
 
   const timeLabel = document.createElement("label");
@@ -85,7 +84,7 @@ export default function loadReserve() {
 
   const guestOptions = [
     ["default", "Select Number of guests"],
-    ["1", "1 Guest"],
+    ["1", "1 Guests"],
     ["2", "2 Guests"],
     ["3", "3 Guests"],
     ["4", "4 Guests"],
