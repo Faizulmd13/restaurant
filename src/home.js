@@ -26,10 +26,7 @@ export default function loadHome() {
   const homeDesc = document.createElement("p");
   homeDesc.id = "home-desc";
 
-  const shopName = document.createElement("strong");
-  shopName.textContent = "Maaran Parotta Shop";
-
-  homeDesc.textContent = ` Welcome to ${shopName}, where traditional South
+  homeDesc.textContent = ` Welcome to Maaran Parotta Shop, where traditional South
         Indian flavors meet the comforting simplicity of home-cooked meals.
         Nestled in the heart of our neighborhood, our shop offers a warm and
         welcoming experience with the aroma of freshly made parotta and the

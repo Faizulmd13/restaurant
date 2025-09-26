@@ -25,12 +25,7 @@ export default function loadAbout() {
   const aboutDesc = document.createElement("p");
   aboutDesc.id = "about-desc";
 
-  const shopName = document.createElement("strong");
-  shopName.textContent = "Maaran Parotta Shop";
-
-  aboutDesc.appendChild(shopName);
-
-  aboutDesc.textContent += ` began as a dream of bringing
+  aboutDesc.textContent = `Maaran Parotta Shop began as a dream of bringing
         authentic South Indian flavors to our beloved neighborhood. Founded in
         2010 by the Maaran family, who have been making parotta for generations,
         our shop has become a favorite spot for locals and visitors alike. Our
